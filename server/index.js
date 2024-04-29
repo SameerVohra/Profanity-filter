@@ -1,11 +1,12 @@
 const express = require("express");
 const badWords = require("./badWords.json");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 app.use(bodyParser.json());
 require("dotenv").config();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("Profinity filter");
 });
