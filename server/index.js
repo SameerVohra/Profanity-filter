@@ -5,14 +5,14 @@ const cors = require("cors");
 const app = express();
 app.use(bodyParser.json());
 require("dotenv").config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.use(cors());
 app.get("/", (req, res) => {
   res.send("Profinity filter");
 });
 
 app.get("/bad-word", (req, res) => {
-  const { message } = req.body;
+  const { message } = req.query;
   const msg = message.split(" ");
 
   let flag = false;
@@ -23,8 +23,8 @@ app.get("/bad-word", (req, res) => {
       return;
     }
   });
-  if (flag) res.send("Gaali mat de bho***ke");
-  else res.send("Tu toh dev manush nikla re baba!!");
+  if (flag) res.send(true);
+  else res.send(false);
 });
 
 app.listen(port, () => {
