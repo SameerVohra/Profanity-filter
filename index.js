@@ -12,7 +12,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/bad-word", (req, res) => {
-  const { message } = req.params;
+  const { message } = req.body;
+  console.log(message);
   const msg = message.split(" ");
   try {
     let flag = false;
