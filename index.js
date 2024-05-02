@@ -11,22 +11,23 @@ app.get("/", (req, res) => {
   res.send("Profinity filter");
 });
 
-app.get("/bad-word", (req, res) => {
+app.post("/bad-word", (req, res) => {
   const { message } = req.body;
   const msg = message.split(" ");
   try {
     let flag = false;
 
-    msg.map((m) => {
+    msg.forEach((m) => {
       if (badWords.badWords.includes(m)) {
         flag = true;
         return;
       }
     });
-    if (flag) res.send(true);
-    else res.send(false);
+
+    res.send(flag);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
