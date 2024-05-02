@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/bad-word", (req, res) => {
-  const { message } = req.body;
+  const { message } = req.params;
   const msg = message.split(" ");
   try {
     let flag = false;
