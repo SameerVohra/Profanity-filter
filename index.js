@@ -14,17 +14,20 @@ app.get("/", (req, res) => {
 app.get("/bad-word", (req, res) => {
   const { message } = req.query;
   const msg = message.split(" ");
+  try {
+    let flag = false;
 
-  let flag = false;
-
-  msg.map((m) => {
-    if (badWords.badWords.includes(m)) {
-      flag = true;
-      return;
-    }
-  });
-  if (flag) res.send(true);
-  else res.send(false);
+    msg.map((m) => {
+      if (badWords.badWords.includes(m)) {
+        flag = true;
+        return;
+      }
+    });
+    if (flag) res.send(true);
+    else res.send(false);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(port, () => {
