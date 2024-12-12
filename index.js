@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 require("dotenv").config();
 const port = process.env.PORT || 3001;
 app.use(cors());
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Profinity filter");
 });
 
